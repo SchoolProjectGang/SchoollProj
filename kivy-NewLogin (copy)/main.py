@@ -14,7 +14,24 @@ class MarketScreen(Screen):
 
 
 class LoginScreen(Screen):
-    pass
+    dialog = None
+
+    # show input fields
+    def clearchecker(self):
+        if self is not None:
+            self.ids.welcome_label.text = "WELCOME"
+            self.ids.user.text = ""
+            self.ids.password.text = ""
+
+    # login button, will update username and password and authenticate
+    def login_to_db(self):
+        if self is None:
+            return
+        global username
+        global password
+        username = self.ids.user.text
+        password = self.ids.password.text
+
 
 
 
