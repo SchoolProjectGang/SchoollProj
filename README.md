@@ -9,7 +9,7 @@ Windows -
 
           pip install kivymd
           
-Ubuntu/Arch/*NIX -  Many Ways
+Ubuntu/Arch/*NIX -  Many Ways( id still use pip to avoid brain dmg )
           
 
           pip3 isntall kivy 
