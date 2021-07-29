@@ -35,6 +35,9 @@ class LoginScreen(Screen):
         print(username)
         password = self.ids.password.text
 
+        self.ids.user.text = ""
+        self.ids.password.text = ""
+
 
 class WindowManager(ScreenManager):
     pass
@@ -48,3 +51,4 @@ class MainApp(MDApp):
 
 
 MainApp().run()
+
