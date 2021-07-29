@@ -14,47 +14,47 @@ class SchoolProjApp(MDApp):
         self.theme_cls.primary_palette = "Teal"
         return Builder.load_file('login.kv')
 
-    def loggerchecker(self):
-        if self.root is not None:
-            self.root.ids.welcome_label.text = f'Sup {self.root.ids.user.text}!'
-
     def clearchecker(self):
-        if self.root is not None:
-            self.root.ids.welcome_label.text = "WELCOME"
-            self.root.ids.user.text = ""
-            self.root.ids.password.text = ""
+        # if self.root is not None:
+        self.root.ids.welcome_label.text = "WELCOME"
+        self.root.ids.user.text = ""
+        self.root.ids.password.text = ""
 
     def show_alert_dialog(self):
-        if self.root is None:
-            return
-        if not self.dialog:
-            self.dialog = MDDialog(
-                title="LOGGED IN",
-                text=f"you have logged in {self.root.ids.user.text} ",
-                buttons=[
-                    MDFlatButton(
-                        text="Cancel", on_release=self.close_dialog
-                    ),
-                    MDRectangleFlatButton(
-                        text="Continue", on_release=self.continue_dialog
-                    )
-                ],
+        # if self.root is None:
+        # return
+        # if not self.dialog:
 
-            )
+        self.dialog = MDDialog(
+            title="LOGGED IN",
+            text=f"you have logged in {self.root.ids.user.text} ",
+            buttons=[
+                MDFlatButton(
+                    text="Cancel", on_release=self.close_dialog
+                ),
+                MDRectangleFlatButton(
+                    text="Continue", on_release=self.continue_dialog
+                )
+            ],
+
+        )
+        self.root.ids.user.text = ""
 
         self.dialog.open()
 
     def close_dialog(self, obj):
-        if self.dialog is None:
-            return
+        # if self.dialog is None:
+        # return
         self.dialog.dismiss()
+        self.root.ids.user.text = ""
 
     def continue_dialog(self, obj):
-        if self.dialog is None or self.root is None:
-            return
+        # if self.dialog is None or self.root is None:
+        # return
         self.dialog.dismiss()
         self.root.ids.welcome_label.text = "You have logged out"
         self.root.ids.welcome_label.font_size = 20
+        self.root.ids.user.text = ""
 
 
 SchoolProjApp().run()
