@@ -12,14 +12,37 @@ WindowManager:
             allow_stretch: True
             keep_ratio: False
         
+
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
         MDRoundFlatButton:
-            text: "LEAVE MARKET"
+            text: "List"
+            font_size: 12
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        MDRoundFlatButton:
+            text: "Market"
+            font_size: 12
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        MDRoundFlatButton:
+            text: "Help Desk"
+            font_size: 12
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        MDRoundFlatButton:
+            text: "Leave Market"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "market screen"
-
-
 <MarketScreen>:
     name: "market screen"
     
