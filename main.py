@@ -6,57 +6,35 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 # from kivymd.uix.boxlayout import MDBoxLayout
 # from kivy.uix.image import Image
 
+# the username and password we will use to authenticate
+username = ""
+password = ""
 
+
+# screen for market
 class MarketScreen(Screen):
     pass
 
 
+# login screen that will be shown once app is started
 class LoginScreen(Screen):
     dialog = None
 
+    # show input fields
     def clearchecker(self):
-        pass
-        # if self.root is not None:
-        #     self.root.ids.welcome_label.text = "WELCOME"
-        #     self.root.ids.user.text = ""
-        #     self.root.ids.password.text = ""
+        if self is not None:
+            self.ids.welcome_label.text = "WELCOME"
+            self.ids.user.text = ""
+            self.ids.password.text = ""
 
-    def show_alert_dialog(self):
-        pass
-        # if self.root is None:
-        #     return
-
-        # self.dialog = MDDialog(
-        #     title="LOGGED IN",
-        #     text=f"you have logged in {self.root.ids.user.text} ",
-        #     buttons=[
-        #         MDFlatButton(
-        #             text="Cancel", on_release=self.close_dialog
-        #         ),
-        #         MDRectangleFlatButton(
-        #             text="Continue", on_release=self.continue_dialog
-        #         )
-        #     ],
-
-        # )
-        # self.root.ids.user.text = ""
-
-        # self.dialog.open()
-
-    def close_dialog(self, obj):
-        pass
-        # if self.dialog is None:
-        #     return
-        # self.dialog.dismiss()
-
-    def continue_dialog(self, obj):
-        pass
-        # if self.dialog is None or self.root is None:
-        #     return
-        # self.dialog.dismiss()
-        # self.root.ids.welcome_label.text = "You have logged out"
-        # self.root.ids.welcome_label.font_size = 20
-        # self.root.ids.user.text = ""
+    # login button, will update username and password and authenticate
+    def login_to_db(self):
+        if self is None:
+            return
+        global username
+        global password
+        username = self.ids.user.text
+        password = self.ids.password.text
 
 
 class WindowManager(ScreenManager):

@@ -63,13 +63,13 @@ WindowManager:
             text: "LOG IN"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_release: app.root.current = "market screen"
+            on_release: root.login_to_db()
 
         MDRoundFlatButton:
             text: "CLEAR"
             font_size: 12
             pos_hint: {"center_x": 0.5} 
-            on_release: app.clearchecker()
+            on_release: root.clearchecker()
                      
 
         Widget:
