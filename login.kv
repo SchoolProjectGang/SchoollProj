@@ -1,4 +1,22 @@
-Screen:
+WindowManager:
+    LoginScreen:
+    MarketScreen:
+
+<MarketScreen>:
+    name: "market screen"
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        Label:
+            text: 'buy'
+            fontsize: 32
+
+        Button:
+            text: 'logout'
+            on_release: app.root.current = "login screen"
+
+<LoginScreen>:
+    name: "login screen"
     MDBoxLayout:
         Image:
             source:'magic.png'
@@ -45,13 +63,13 @@ Screen:
             text: "LOG IN"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_release: app.show_alert_dialog()  
+            on_release: app.show_alert_dialog()
 
         MDRoundFlatButton:
             text: "CLEAR"
             font_size: 12
             pos_hint: {"center_x": 0.5} 
-            on_press: app.clearchecker()
+            on_release: app.clearchecker()
                      
 
         Widget:
