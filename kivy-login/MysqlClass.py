@@ -14,10 +14,21 @@ class Mysql:
             password = self.password
         )
         if self.m.is_connected():
-            print("printed")
+            self.cursor = self.m.cursor()
+            print("connected")
+            # self.drop_database("NEWDB")
+    
+    def make_database(self,dbname):
+        self.cursor.execute(f"create database {dbname}")
+        self.m.commit()
+        return 
 
-userinput_u = input('enter your mysql username please thanks!")
-userinput_p = input('enter your mysql password please thanks!") 
-userinput_h = input('enter your mysql hostname please thanks!")
-Tanay = Mysql(userinput_u, userinput_p, userinput_h)
-Tanay.connect()
+    def drop_database(self,dbname):
+        self.cursor.execute(f"drop database {dbname}")
+        self.m.commit()
+        return
+
+userinput_u = input("enter your mysql username please thanks!")
+userinput_p = input("enter your mysql password please thanks!") 
+local_instance = Mysql(userinput_u, userinput_p, 'localhost')
+local_instance.connect()
