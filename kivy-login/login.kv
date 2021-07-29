@@ -7,35 +7,28 @@ WindowManager:
     MDBoxLayout:
         orientation: 'vertical'
         size: root.width, root.height
-        MDLabel:
-            id: menu_label
-            text: "SHOP SCREEN"
-            font_size: 40
-            halign: 'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
+        Image:
+            source:'pictures/magic.png'
+            allow_stretch: True
+            keep_ratio: False
+        
         MDRoundFlatButton:
             text: "LEAVE MARKET"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            on_release: on_release: app.root.transition.direction = "right"
+            on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "market screen"
 
 
 <MarketScreen>:
     name: "market screen"
+    
     MDBoxLayout:
-        orientation: 'vertical'
-        size: root.width, root.height
-        MDLabel:
-            id: menu_label
-            text: "MENU SCREEN"
-            font_size: 40
-            halign: 'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
+        Image:
+            source:'pictures/magic.png'
+            allow_stretch: True
+            keep_ratio: False
+       
 
     MDCard:
         size_hint: None, None
