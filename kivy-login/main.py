@@ -11,6 +11,10 @@ class BuyingScreen(Screen):
     pass
 
 
+class ListingsScreen(Screen):
+    pass
+
+
 class MarketScreen(Screen):
     pass
 
@@ -18,7 +22,7 @@ class MarketScreen(Screen):
 class LoginScreen(Screen):
     dialog = None
 
-    # show input fields
+    # clear input fields
     def clearchecker(self):
         if self is not None:
             self.ids.welcome_label.text = "WELCOME"
