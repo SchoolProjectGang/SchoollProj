@@ -6,8 +6,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 # from kivymd.uix.boxlayout import MDBoxLayout
 # from kivy.uix.image import Image
 
+
 class BuyingScreen(Screen):
     pass
+
 
 class MarketScreen(Screen):
     pass
@@ -31,7 +33,6 @@ class LoginScreen(Screen):
         global password
         username = self.ids.user.text
         password = self.ids.password.text
-
 
 
 
