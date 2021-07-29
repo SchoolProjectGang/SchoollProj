@@ -6,23 +6,30 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 # from kivymd.uix.boxlayout import MDBoxLayout
 # from kivy.uix.image import Image
 
+class ListingsScreen(Screen):
+    pass
+
+class AccountCreation(Screen):
+    def account_made_in_db(self):
+        if self is None:
+            return
+        global new_user
+        global new_pass
+        new_user = self.ids.new_use.text
+        new_pass = self.ids.new_password.text
+
+        self.ids.new_use.text = ""
+        self.ids.new_password.text = ""
 
 class BuyingScreen(Screen):
     pass
 
-
-class ListingsScreen(Screen):
-    pass
-
-
 class MarketScreen(Screen):
     pass
 
-
 class LoginScreen(Screen):
-    dialog = None
 
-    # clear input fields
+    # show input fields
     def clearchecker(self):
         if self is not None:
             self.ids.welcome_label.text = "WELCOME"
@@ -36,16 +43,14 @@ class LoginScreen(Screen):
         global username
         global password
         username = self.ids.user.text
-        print(username)
+        # print(username)
         password = self.ids.password.text
 
         self.ids.user.text = ""
         self.ids.password.text = ""
 
-
 class WindowManager(ScreenManager):
     pass
-
 
 class MainApp(MDApp):
     def build(self):
