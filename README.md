@@ -1,5 +1,5 @@
 DONT FORGET TO INSTALL KIVY AND KIVYMD PACKAGES USING PIP OR ANACONDA 
-ALSO DONT FORGET YOU NEED PYTHON, WINDOWS 10 OR UBUNTU
+ALSO DONT FORGET YOU NEED PYTHON, WINDOWS 10 OR UBUNTU, I USE ARCH BTW
 
 
 
@@ -10,7 +10,7 @@ Windows -
 
           pip install kivymd
           
-Ubuntu -  Many Ways
+Ubuntu/Arch/*NIX -  Many Ways
           
 
           pip3 isntall kivy 
