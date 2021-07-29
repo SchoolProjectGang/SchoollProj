@@ -32,6 +32,7 @@ class LoginScreen(Screen):
         global username
         global password
         username = self.ids.user.text
+        print(username)
         password = self.ids.password.text
 
 
