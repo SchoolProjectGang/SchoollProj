@@ -36,7 +36,6 @@ class LoginScreen(Screen):
         password = self.ids.password.text
 
 
-
 class WindowManager(ScreenManager):
     pass
 
