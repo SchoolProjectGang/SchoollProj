@@ -7,8 +7,14 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 # from kivymd.uix.boxlayout import MDBoxLayout
 # from kivy.uix.image import Image
 
+
+class HistoryScreen(Screen):
+    pass
+
+
 class ListingsScreen(Screen):
     pass
+
 
 class AccountCreation(Screen):
     def account_made_in_db(self):
@@ -22,11 +28,14 @@ class AccountCreation(Screen):
         self.ids.new_use.text = ""
         self.ids.new_password.text = ""
 
+
 class BuyingScreen(Screen):
     pass
 
+
 class MarketScreen(Screen):
     pass
+
 
 class LoginScreen(Screen):
 
@@ -50,8 +59,10 @@ class LoginScreen(Screen):
         self.ids.user.text = ""
         self.ids.password.text = ""
 
+
 class WindowManager(ScreenManager):
     pass
+
 
 class MainApp(MDApp):
     def build(self):
