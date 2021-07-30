@@ -3,9 +3,7 @@ from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
-# import MysqlClass
-# from kivymd.uix.boxlayout import MDBoxLayout
-# from kivy.uix.image import Image
+from MysqlClass import Mysql
 
 
 class HistoryScreen(Screen):
@@ -24,6 +22,9 @@ class AccountCreation(Screen):
         global new_pass
         new_user = self.ids.new_use.text
         new_pass = self.ids.new_password.text
+
+        x = Mysql()
+        x.add_userdata(new_user, new_pass)
 
         self.ids.new_use.text = ""
         self.ids.new_password.text = ""
