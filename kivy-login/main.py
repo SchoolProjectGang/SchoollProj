@@ -18,8 +18,6 @@ class AccountCreation(Screen):
     def account_made_in_db(self):
         if self is None:
             return
-        global new_user
-        global new_pass
         new_user = self.ids.new_use.text
         new_pass = self.ids.new_password.text
 
@@ -51,14 +49,15 @@ class LoginScreen(Screen):
     def login_to_db(self):
         if self is None:
             return
-        global username
-        global password
-        username = self.ids.user.text
+        self.username = self.ids.user.text
         # print(username)
-        password = self.ids.password.text
+        self.password = self.ids.password.text
 
         self.ids.user.text = ""
         self.ids.password.text = ""
+
+    def auth(self):
+        return Mysql().check_creds(self.username, self.password)
 
 
 class WindowManager(ScreenManager):

@@ -6,9 +6,10 @@ class Mysql:
         self.m = con.connect(
             host='localhost',
             username='root',
-            password='t456tt456t',
-            database='project'
+            password='password1',
+            database='School'
         )
+        self.user_id = 0
         if self.m.is_connected():
             self.cursor = self.m.cursor()
 
@@ -28,3 +29,14 @@ class Mysql:
         self.m.commit()
         # print(f"insert into users(username,userpassword) values('{name1}','{pass1}')")
         return
+
+    # check if login credentials are correct or not
+    def check_creds(self, username, password):
+        self.cursor.execute(
+            f"select uid, userpassword from users where username='{username}'")
+        user_data = self.cursor.fetchall()
+        if user_data:
+            self.user_id = user_data[0][0]
+            return password == user_data[0][1]
+        else:
+            return False
