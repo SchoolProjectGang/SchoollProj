@@ -1,7 +1,7 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton
+from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
 
@@ -39,9 +39,9 @@ class AccountCreation(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
-                text="wrong username or password",
+                title = "Invalid Username Or Password",
                 buttons=[
-                    MDFlatButton(
+                    MDRoundFlatButton(
                         text="Go Back To Create Account", on_release=self.close_dialog
                     ),
                 ],
