@@ -6,8 +6,8 @@ class Mysql:
         self.m = con.connect(
             host='localhost',
             username='root',
-            password='t456tt456t',
-            database='project'
+            password='password1',
+            database='School'
         )
         self.user_id = 0
         if self.m.is_connected():
@@ -28,7 +28,6 @@ class Mysql:
             f"insert into users(username,userpassword) values('{name1}','{pass1}')")
         self.m.commit()
         # print(f"insert into users(username,userpassword) values('{name1}','{pass1}')")
-        return
 
     # check if login credentials are correct or not
     def check_creds(self, username, password):
@@ -40,3 +39,10 @@ class Mysql:
             return password == user_data[0][1]
         else:
             return False
+
+    def check_first_letter(self, username, password):
+        if username == '' or password == '':
+            return False
+        if username[0] == ' ' or password[0] == ' ':
+            return False
+        return True

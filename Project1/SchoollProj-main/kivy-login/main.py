@@ -15,17 +15,47 @@ class ListingsScreen(Screen):
 
 
 class AccountCreation(Screen):
+    dialog = None
+    username, password = "", ""
+
     def account_made_in_db(self):
         if self is None:
-            return
-        new_user = self.ids.new_use.text
-        new_pass = self.ids.new_password.text
+            return True
+
+        self.username = self.ids.new_use.text
+        self.password = self.ids.new_password.text
 
         x = Mysql()
-        x.add_userdata(new_user, new_pass)
 
-        self.ids.new_use.text = ""
-        self.ids.new_password.text = ""
+        if self.auth():
+            self.ids.new_use.text = ""
+            self.ids.new_password.text = ""
+            x.add_userdata(self.username, self.password)
+        else:
+            self.ids.new_use.text = ""
+            self.ids.new_password.text = ""
+            self.show_alert_dialog()
+
+    def show_alert_dialog(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                text="wrong username or password",
+                buttons=[
+                    MDFlatButton(
+                        text="Go Back To Create Account", on_release=self.close_dialog
+                    ),
+                ],
+            )
+        self.dialog.open()
+
+    def close_dialog(self, obj):
+        if self.dialog is not None:
+            self.dialog.dismiss()
+
+    def auth(self):
+        self.username = self.ids.new_use.text
+        self.password = self.ids.new_password.text
+        return Mysql().check_first_letter(self.username, self.password)
 
 
 class BuyingScreen(Screen):

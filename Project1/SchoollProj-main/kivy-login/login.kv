@@ -104,9 +104,9 @@ WindowManager:
             text: "CREATE ACCOUNT"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_release: app.root.transition.direction = "left"
-            on_release: app.root.current = "market screen"
             on_release: root.account_made_in_db()
+            on_release: app.root.transition.direction = "left" 
+            on_release: app.root.current = "market screen" if root.auth() else "account screen"
         
         MDRoundFlatButton:
             text: "EXIT"
@@ -114,6 +114,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "login screen"
+
                      
 <BuyingScreen>:
     name: "buying screen"
