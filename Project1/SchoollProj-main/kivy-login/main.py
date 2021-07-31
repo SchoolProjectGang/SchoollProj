@@ -39,7 +39,7 @@ class AccountCreation(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
-                title = "Invalid Username Or Password",
+                title="Invalid Username Or Password",
                 buttons=[
                     MDRoundFlatButton(
                         text="Go Back To Create Account", on_release=self.close_dialog
@@ -67,6 +67,7 @@ class MarketScreen(Screen):
 
 
 class LoginScreen(Screen):
+    dialog = None
 
     # show input fields
     def clearchecker(self):
@@ -79,15 +80,36 @@ class LoginScreen(Screen):
     def login_to_db(self):
         if self is None:
             return
-        self.username = self.ids.user.text
-        # print(username)
-        self.password = self.ids.password.text
 
-        self.ids.user.text = ""
-        self.ids.password.text = ""
+        if self.auth():
+            self.ids.user.text = ""
+            self.ids.password.text = ""
+        else:
+            self.ids.user.text = ""
+            self.ids.password.text = ""
+            self.show_alert_dialog()
+
+    def show_alert_dialog(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title="Invalid Username Or Password",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="Go Back To Login Screen", on_release=self.close_dialog
+                    ),
+                ],
+            )
+        self.dialog.open()
+
+    def close_dialog(self, obj):
+        if self.dialog is not None:
+            self.dialog.dismiss()
 
     def auth(self):
-        return Mysql().check_creds(self.username, self.password)
+        username = self.ids.user.text
+        # print(username)
+        password = self.ids.password.text
+        return Mysql().check_creds(username, password)
 
 
 class WindowManager(ScreenManager):
