@@ -12,6 +12,6 @@ Windows -
 Ubuntu/Arch/*NIX -  Many Ways( id still use pip to avoid brain dmg )
           
 
-          pip3 isntall kivy 
+          pip3 install kivy 
           
           pip3 install kivymd
