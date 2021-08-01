@@ -1,6 +1,3 @@
 issues:
     MysqlClass.py -->
-            1. Need to find a way to connect and keep connected without coming out of the function
-            2. Need to find a way to be able to change the users database
-            3. Need to find a way to run commands. issue due to issue 1
-            4. Need to find a dynamic way of user input for making tables
+            1. Need to find a way to be able to change the users database
