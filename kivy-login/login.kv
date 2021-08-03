@@ -1,11 +1,47 @@
 WindowManager:
-    # OpeningScreen: background image, card, create the logo as the button 2. find a logo. find a new background
+    OpeningScreen: 
     LoginScreen:
     MarketScreen:
     BuyingScreen:
     AccountCreation:
     ListingsScreen:
     HistoryScreen:
+
+<OpeningScreen>:
+    name: "Opening Screen"
+    MDBoxLayout:
+
+        Image:
+            source:'pictures/background.jpg'
+            allow_stretch: True
+            keep_ratio: False
+
+        # Label:
+        #    id: my_label
+		#	font_size: 32
+        
+    MDFlatButton:
+        size_hint: 50,50
+        pos_hint: {'center_x':0.5}
+        # on_press: root.title_vap()
+        # on_release: root.press_title()
+        on_press: app.root.transition.direction = "left"
+        on_release: app.root.current = "login screen"
+
+    MDCard:
+        size_hint: None, None
+        size: 200,300
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        Image:
+            id: my_image
+            source:'pictures/logo.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
 
 <HistoryScreen>:
     name: "history screen"

@@ -7,6 +7,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
 import webbrowser
 
+class OpeningScreen(Screen):
+    pass
 
 class HistoryScreen(Screen):
     pass
