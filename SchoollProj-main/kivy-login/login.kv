@@ -18,7 +18,7 @@ WindowManager:
         size_hint: None, None
         size: 600,500
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        elevation: 10
+        elevation: 1
         padding: 25
         spacing: 25
         orientation: 'vertical'
@@ -29,23 +29,39 @@ WindowManager:
 
 <ListingsScreen>:
     name: "listings screen"
-    MDBoxLayout:
-        orientation: 'vertical'
-        size: root.width, root.height
+    ScrollView:
+        MDGridLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            id: items
+            cols: 1
+            # orientation: 'vertical'
+            # size: root.width, root.height
 
-    MDCard:
-        size_hint: None, None
-        size: 600,500
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        elevation: 10
-        padding: 25
-        spacing: 25
-        orientation: 'vertical'
-        ScrollView:
-            MDRoundFlatButton:
-                text: "leave"
-                on_release: app.root.transition.direction = "right"
-                on_release: app.root.current = "buying screen"
+            MDCard:
+                size_hint: None, None
+                size:200,100
+                pos_hint: {"center_x": 1, "center_y": 1}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                MDRoundFlatButton:
+                    text: "leave"
+                    on_release: app.root.transition.direction = "right"
+                    on_release: app.root.current = "buying screen"
+            MDCard:
+                size_hint: None, None
+                size:200,100
+                pos_hint: {"center_x": 1, "center_y": 1}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                MDRoundFlatButton:
+                    text: "leave"
+                    on_release: app.root.transition.direction = "right"
+                    on_release: app.root.current = "buying screen"
             
 <AccountCreation>:
     name: "account screen"
@@ -174,6 +190,7 @@ WindowManager:
             text: 'Shop'
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "listings screen"
+            on_release: app.root.get_screen('listings screen').cyka()
             
         MDRoundFlatButton:
             text: 'logout'
@@ -192,8 +209,8 @@ WindowManager:
         size: 300, 400
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         elevation: 10
-        padding: 25
-        spacing: 25
+        padding: 10
+        spacing: 22
         orientation: 'vertical'
 
         MDLabel:
