@@ -4,6 +4,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
+import webbrowser
 
 
 class HistoryScreen(Screen):
@@ -110,6 +111,9 @@ class LoginScreen(Screen):
         # print(username)
         password = self.ids.password.text
         return Mysql().check_creds(username, password)
+
+    def webopen(self):
+        webbrowser.open('https://google.com')
 
 
 class WindowManager(ScreenManager):
