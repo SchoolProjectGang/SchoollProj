@@ -1,4 +1,5 @@
 WindowManager:
+    # OpeningScreen: background image, card, create the logo as the button 2. find a logo. find a new background
     LoginScreen:
     MarketScreen:
     BuyingScreen:
@@ -104,8 +105,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "login screen"
-
-                     
+                    
 <BuyingScreen>:
     name: "buying screen"
     MDBoxLayout:
@@ -238,8 +238,15 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "account screen"
+        
+        MDRoundFlatButton:
+            text: "WEBPAGE"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_release: root.webopen()
                      
 
         Widget:
             size_hint_y: None
             height: 10
+
