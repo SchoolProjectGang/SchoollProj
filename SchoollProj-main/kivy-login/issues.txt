@@ -1,3 +1,0 @@
-issues:
-    MysqlClass.py -->
-            1. Need to find a way to be able to change the users database
