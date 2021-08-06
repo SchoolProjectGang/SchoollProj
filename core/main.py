@@ -1,12 +1,14 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
+from kivymd.uix.card import MDCard
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
+import webbrowser
 
 
 class OpeningScreen(Screen):
@@ -22,7 +24,28 @@ class HistoryScreen(Screen):
 
 
 class ListingsScreen(Screen):
-    pass
+    made = False
+
+    def cyka(self):
+        if not self.made:
+            self.made = True
+            for i in range(10):
+                card = MDCard(
+                    size_hint=(None, None),
+                    size=(200, 100),
+                    pos_hint={'center_x': 1, 'center_y': 1},
+                    elevation=10,
+                    padding=25,
+                    spacing=25,
+                    orientation='vertical'
+                )
+                button = MDRoundFlatButton(
+                    text=f"button {i}", on_release=self.open)
+                card.add_widget(button)
+                self.ids['items'].add_widget(card)
+
+    def open(self, _):
+        webbrowser.open('https://google.com')
 
 
 class AccountCreation(Screen):
