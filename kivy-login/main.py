@@ -1,15 +1,21 @@
+
 from kivy.lang import Builder
 from kivymd.app import MDApp
+from kivy.uix.widget import Widget
+from kivy.animation import Animation
+from kivy.clock import Clock
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.card import MDCard
 from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
-import webbrowser
-
 
 class OpeningScreen(Screen):
-    pass
+    def title_vap(self):
+      self.ids.my_image.source = 'pictures/logo_pressed.jpg'
+    def press_title(self):
+       self.ids.my_image.source = 'pictures/logo.jpg'
+    
+    
 
 
 class HistoryScreen(Screen):
@@ -17,28 +23,7 @@ class HistoryScreen(Screen):
 
 
 class ListingsScreen(Screen):
-    made = False
-
-    def cyka(self):
-        if not self.made:
-            self.made = True
-            for i in range(10):
-                card = MDCard(
-                    size_hint=(None, None),
-                    size=(200, 100),
-                    pos_hint={'center_x': 1, 'center_y': 1},
-                    elevation=10,
-                    padding=25,
-                    spacing=25,
-                    orientation='vertical'
-                )
-                button = MDRoundFlatButton(
-                    text=f"button {i}", on_release=self.open)
-                card.add_widget(button)
-                self.ids['items'].add_widget(card)
-
-    def open(self, _):
-        webbrowser.open('https://google.com')
+    pass
 
 
 class AccountCreation(Screen):
@@ -137,9 +122,6 @@ class LoginScreen(Screen):
         # print(username)
         password = self.ids.password.text
         return Mysql().check_creds(username, password)
-
-    def webopen(self):
-        webbrowser.open('https://google.com')
 
 
 class WindowManager(ScreenManager):
