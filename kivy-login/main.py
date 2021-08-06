@@ -1,4 +1,3 @@
-
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
@@ -9,13 +8,13 @@ from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatBu
 from kivy.uix.screenmanager import ScreenManager, Screen
 from MysqlClass import Mysql
 
+
 class OpeningScreen(Screen):
     def title_vap(self):
-      self.ids.my_image.source = 'pictures/logo_pressed.jpg'
+        self.ids.my_image.source = 'pictures/logo_pressed.jpg'
+
     def press_title(self):
-       self.ids.my_image.source = 'pictures/logo.jpg'
-    
-    
+        self.ids.my_image.source = 'pictures/logo.jpg'
 
 
 class HistoryScreen(Screen):
