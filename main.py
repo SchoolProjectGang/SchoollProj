@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.widget import Widget
+from kivymd.uix.label import MDLabel
 from kivymd.uix.card import MDCard
 from kivy.animation import Animation
 from kivy.clock import Clock
@@ -26,21 +27,26 @@ class HistoryScreen(Screen):
 class ListingsScreen(Screen):
     made = False
 
+    # function is called when user logs/signs in
+    # sets up the listings screen and adds the buttons and games
     def cyka(self):
         if not self.made:
             self.made = True
-            for i in range(10):
+            items = Mysql().get_game_list()
+            for i in range(len(items)):
                 card = MDCard(
                     size_hint=(None, None),
-                    size=(200, 100),
+                    size=(300, 200),
                     pos_hint={'center_x': 1, 'center_y': 1},
                     elevation=10,
                     padding=25,
                     spacing=25,
                     orientation='vertical'
                 )
+                label = MDLabel(text=f"{items[i][1]}")
                 button = MDRoundFlatButton(
-                    text=f"button {i}", on_release=self.open)
+                    text=f"buy for {items[i][2]}", on_release=self.open)
+                card.add_widget(label)
                 card.add_widget(button)
                 self.ids['items'].add_widget(card)
 

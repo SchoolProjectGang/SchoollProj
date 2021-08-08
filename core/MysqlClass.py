@@ -46,3 +46,7 @@ class Mysql:
         if username[0] == ' ' or password[0] == ' ':
             return False
         return True
+
+    def get_game_list(self):
+        self.cursor.execute("select * from Products")
+        return self.cursor.fetchall()
