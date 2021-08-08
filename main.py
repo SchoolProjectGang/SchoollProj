@@ -26,6 +26,7 @@ class HistoryScreen(Screen):
 
 class ListingsScreen(Screen):
     made = False
+    dialog = None
 
     # function is called when user logs/signs in
     # sets up the listings screen and adds the buttons and games
@@ -45,13 +46,33 @@ class ListingsScreen(Screen):
                 )
                 label = MDLabel(text=f"{items[i][1]}")
                 button = MDRoundFlatButton(
-                    text=f"buy for {items[i][2]}", on_release=self.open)
+                    text=f"buy for {items[i][2]}", on_release=lambda _: self.show_alert_dialog(label.text, items[i][2]))
                 card.add_widget(label)
                 card.add_widget(button)
                 self.ids['items'].add_widget(card)
 
+    def show_alert_dialog(self, name, price):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title=f"do you want to buy {name} for {price}",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="yes", on_release=self.open
+                    ),
+                    MDRoundFlatButton(
+                        text="no", on_release=self.close_dialog
+                    ),
+                ],
+            )
+        self.dialog.open()
+
+    def close_dialog(self, _):
+        if self.dialog is not None:
+            self.dialog.dismiss()
+
     def open(self, _):
         webbrowser.open('https://google.com')
+        self.close_dialog(_)
 
 
 class AccountCreation(Screen):
