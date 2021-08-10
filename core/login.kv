@@ -1,11 +1,11 @@
 WindowManager:
-    ListingsScreen:
     OpeningScreen:
     LoginScreen:
     MarketScreen:
     BuyingScreen:
     AccountCreation:
     HistoryScreen:
+    ListingsScreen:
 
 <OpeningScreen>:
     name: "Opening Screen"
@@ -108,7 +108,8 @@ WindowManager:
 
         MDLabel:
             id: hello_label
-            text: "HELLO NEW USER"
+            markup: True
+            text: "[font=Exo-VariableFont_wght]HELLO NEW USER[/font]"
             font_size: 28
             halign: 'center'
             size_hint_y: None
@@ -135,7 +136,7 @@ WindowManager:
             password: True
 
         MDRoundFlatButton:
-            text: "CREATE ACCOUNT"
+            text: "[font=Exo-VariableFont_wght]CREATE ACCOUNT[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_release: root.account_made_in_db()
@@ -144,11 +145,17 @@ WindowManager:
             on_release: app.root.current = "market screen" if root.auth() else "account screen"
         
         MDRoundFlatButton:
-            text: "EXIT"
+            text: "[font=Exo-VariableFont_wght]EXIT[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "login screen"
+        
+        MDRoundFlatButton:
+            text: "[font=Exo-VariableFont_wght]NOT ABLE TO MAKE A PASSWORD?[/font]"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_release: root.show_password_dialog()
 
 <BuyingScreen>:
     name: "buying screen"
@@ -240,12 +247,13 @@ WindowManager:
 
         MDLabel:
             id: welcome_label
-            text: "WELCOME"
-            font_size: 40
+            markup: True
+            text: "[font=Exo-VariableFont_wght]WELCOME[/font]"
+            font_size: 30
             halign: 'center'
             size_hint_y: None
             height: self.texture_size[1]
-            padding_y: 15
+            padding_y: 10
 
         MDTextFieldRound:
             id: user
@@ -267,27 +275,20 @@ WindowManager:
             password: True
 
         MDRoundFlatButton:
-            text: "LOG IN"
+            text: "[font=Exo-VariableFont_wght]LOGIN[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "left"
-            on_release: root.login_to_db()
             on_release: root.login_to_db()
             on_release: app.root.get_screen('listings screen').cyka()
             on_release: app.root.current = "market screen" if root.auth() else "login screen"
         
         MDRoundFlatButton:
-            text: "NEED AN ACCOUNT?"
+            text: "[font=Exo-VariableFont_wght]NEED AN ACCOUNT[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "account screen"
-
-        MDRoundFlatButton:
-            text: "WEBPAGE"
-            font_size: 12
-            pos_hint: {"center_x": 0.5}
-            on_release: root.webopen()
 
         Widget:
             size_hint_y: None

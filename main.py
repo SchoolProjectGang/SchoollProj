@@ -1,5 +1,6 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
+<<<<<<< HEAD
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivymd.uix.label import MDLabel
@@ -66,6 +67,21 @@ import webbrowser
 #         self.close_dialog(_)
 
 
+=======
+from kivy.uix.widget import Widget
+from kivymd.uix.card import MDCard
+# from kivy.animation import Animation
+# from kivy.clock import Clock
+from kivymd.uix.label import MDLabel
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
+from kivy.uix.screenmanager import ScreenManager, Screen
+from core.MysqlClass import Mysql
+from core.new import password_maker
+import webbrowser
+
+
+>>>>>>> new_branch
 class OpeningScreen(Screen):
     def title_vap(self):
         self.ids.my_image.source = 'pictures/logo_pressed.jpg'
@@ -137,6 +153,10 @@ class ListingsScreen(Screen):
 class AccountCreation(Screen):
     dialog = None
     username, password = "", ""
+<<<<<<< HEAD
+=======
+    k = ""
+>>>>>>> new_branch
 
     def account_made_in_db(self):
         if self is None:
@@ -159,10 +179,17 @@ class AccountCreation(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
+<<<<<<< HEAD
                 title="Invalid Username Or Password",
                 buttons=[
                     MDRoundFlatButton(
                         text="Go Back To Create Account", on_release=self.close_dialog
+=======
+                title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+>>>>>>> new_branch
                     ),
                 ],
             )
@@ -177,6 +204,27 @@ class AccountCreation(Screen):
         self.password = self.ids.new_password.text
         return Mysql().check_first_letter(self.username, self.password)
 
+<<<<<<< HEAD
+=======
+    def password_made(self):
+        class_holder = password_maker(6)
+        self.k = class_holder.generator()
+        return self.k
+
+    def show_password_dialog(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title="[font=Exo-VariableFont_wght]Your Password is[/font]",
+                text=f"[font=Exo-VariableFont_wght]{self.password_made()}[/font]",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                    )
+                ]
+            )
+        self.dialog.open()
+
+>>>>>>> new_branch
 
 class BuyingScreen(Screen):
     pass
@@ -212,10 +260,17 @@ class LoginScreen(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
+<<<<<<< HEAD
                 title="Invalid Username Or Password",
                 buttons=[
                     MDRoundFlatButton(
                         text="Go Back To Login Screen", on_release=self.close_dialog
+=======
+                title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+>>>>>>> new_branch
                     ),
                 ],
             )
