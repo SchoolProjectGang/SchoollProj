@@ -1,69 +1,16 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
-from kivymd.uix.label import MDLabel
 from kivymd.uix.card import MDCard
-from kivy.animation import Animation
-from kivy.clock import Clock
+# from kivy.animation import Animation
+# from kivy.clock import Clock
+from kivymd.uix.label import MDLabel
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.scrollview import ScrollView
-from kivymd.uix.gridlayout import GridLayout
 from core.MysqlClass import Mysql
+from core.new import password_maker
 import webbrowser
-
-
-# class FirstScreen(Screen):
-#     def __init__(self, **kwargs):
-#         super(FirstScreen, self).__init__(**kwargs)
-#         items = Mysql().get_game_list()
-#         self.dialog = None
-#         root = ScrollView()
-#         layout = GridLayout(cols=1, size_hint_y=None)
-#         for i in range(len(items)):
-#             card = MDCard(
-#                 size_hint=(None, None),
-#                 size=(300, 200),
-#                 pos_hint={'center_x': 1, 'center_y': 1},
-#                 elevation=10,
-#                 padding=25,
-#                 spacing=25,
-#                 orientation='vertical')
-#             label = MDLabel(text=f"{items[i][1]}")
-#             button = MDRoundFlatButton(
-#                 text=f"buy for {items[i][2]}", on_release=self.show_alert_dialog)
-#             print(button, i, items[i])
-#             card.add_widget(label)
-#             card.add_widget(button)
-#             layout.add_widget(card)
-#         root.add_widget(layout)
-#         self.add_widget(root)
-#
-#     def show_alert_dialog(self, instance):
-#         if not self.dialog:
-#             print(instance)
-#             self.dialog = MDDialog(
-#                 title=f"do you want to buy {1} for {2}",
-#                 buttons=[
-#                     MDRoundFlatButton(
-#                         text="yes", on_release=self.open
-#                     ),
-#                     MDRoundFlatButton(
-#                         text="no", on_release=self.close_dialog
-#                     ),
-#                 ],
-#             )
-#         self.dialog.open()
-#
-#     def close_dialog(self, _):
-#         if self.dialog is not None:
-#             self.dialog.dismiss()
-#
-#     def open(self, _):
-#         webbrowser.open('https://google.com')
-#         self.close_dialog(_)
 
 
 class OpeningScreen(Screen):
@@ -137,6 +84,7 @@ class ListingsScreen(Screen):
 class AccountCreation(Screen):
     dialog = None
     username, password = "", ""
+    k = ""
 
     def account_made_in_db(self):
         if self is None:
@@ -159,10 +107,10 @@ class AccountCreation(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
-                title="Invalid Username Or Password",
+                title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="Go Back To Create Account", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],
             )
@@ -176,6 +124,24 @@ class AccountCreation(Screen):
         self.username = self.ids.new_use.text
         self.password = self.ids.new_password.text
         return Mysql().check_first_letter(self.username, self.password)
+
+    def password_made(self):
+        class_holder = password_maker(6)
+        self.k = class_holder.generator()
+        return self.k
+
+    def show_password_dialog(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title="[font=Exo-VariableFont_wght]Your Password is[/font]",
+                text=f"[font=Exo-VariableFont_wght]{self.password_made()}[/font]",
+                buttons=[
+                    MDRoundFlatButton(
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                    )
+                ]
+            )
+        self.dialog.open()
 
 
 class BuyingScreen(Screen):
@@ -212,10 +178,10 @@ class LoginScreen(Screen):
     def show_alert_dialog(self):
         if not self.dialog:
             self.dialog = MDDialog(
-                title="Invalid Username Or Password",
+                title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="Go Back To Login Screen", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],
             )
