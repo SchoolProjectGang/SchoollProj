@@ -70,6 +70,17 @@ class ListingsScreen(Screen):
         )
         self.dialog.open()
 
+    def show_transaction_complete_dialog(self, _):
+        self.dialog = MDDialog(
+            title=f"transaction complete!",
+            buttons=[
+                MDRoundFlatButton(
+                    text="close", on_release=self.close_dialog
+                ),
+            ],
+        )
+        self.dialog.open()
+
     def get_price(self, name):
         for i in self.items:
             if i[1] == name:
@@ -83,6 +94,7 @@ class ListingsScreen(Screen):
         x = Mysql()
         x.add_game(name, global_username)
         self.close_dialog(_)
+        self.show_transaction_complete_dialog(_)
 
 
 class AccountCreation(Screen):
@@ -99,7 +111,9 @@ class AccountCreation(Screen):
 
         x = Mysql()
 
-        if self.auth():
+        global global_username
+        if username := self.auth():
+            global_username = username
             self.ids.new_use.text = ""
             self.ids.new_password.text = ""
             x.add_userdata(self.username, self.password)
