@@ -12,6 +12,9 @@ from core.MysqlClass import Mysql
 from core.new import password_maker
 import webbrowser
 
+# stores username of user when logged in
+global_username = ""
+
 
 class OpeningScreen(Screen):
     def title_vap(self):
@@ -58,7 +61,7 @@ class ListingsScreen(Screen):
             title=f"do you want to buy {name} for {self.get_price(name)}",
             buttons=[
                 MDRoundFlatButton(
-                    text="yes", on_release=self.open
+                    text="yes", on_release=lambda instance: self.open(name, instance)
                 ),
                 MDRoundFlatButton(
                     text="no", on_release=self.close_dialog
@@ -76,8 +79,9 @@ class ListingsScreen(Screen):
         if self.dialog is not None:
             self.dialog.dismiss()
 
-    def open(self, _):
-        webbrowser.open('https://google.com')
+    def open(self, name, _):
+        x = Mysql()
+        x.add_game(name, global_username)
         self.close_dialog(_)
 
 
@@ -167,7 +171,10 @@ class LoginScreen(Screen):
         if self is None:
             return
 
-        if self.auth():
+        global global_username
+        if username := self.auth():
+            global_username = username
+            print(global_username)
             self.ids.user.text = ""
             self.ids.password.text = ""
         else:
@@ -210,4 +217,3 @@ class MainApp(MDApp):
 
 
 MainApp().run()
-

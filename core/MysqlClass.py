@@ -36,7 +36,10 @@ class Mysql:
         user_data = self.cursor.fetchall()
         if user_data:
             self.user_id = user_data[0][0]
-            return password == user_data[0][1]
+            if password == user_data[0][1]:
+                return username
+            else:
+                return False
         else:
             return False
 
@@ -50,3 +53,14 @@ class Mysql:
     def get_game_list(self):
         self.cursor.execute("select * from Products")
         return self.cursor.fetchall()
+
+    def add_game(self, name, username):
+        self.cursor.execute(f"select * from Products where name='{name}'")
+        creds = self.cursor.fetchall()
+        print(creds)
+        self.cursor.execute(f"select * from users where username='{username}'")
+        info = self.cursor.fetchall()
+        print(info)
+        self.cursor.execute(
+            f"update users set total_amount_spent={creds[0][2] + (info[0][3] if info[0][3] is not None else 0)}, games_owned='{str(creds[0][0]) + ' ' + (str(info[0][4]) if info[0][4] is not None else '')}' where username='{username}'")
+        self.m.commit()
