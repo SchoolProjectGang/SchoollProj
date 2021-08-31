@@ -10,7 +10,7 @@ from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatBu
 from kivy.uix.screenmanager import ScreenManager, Screen
 from core.MysqlClass import Mysql
 from core.new import password_maker
-import webbrowser
+from core.User_buy import UserData
 
 # stores username of user when logged in
 global_username = ""
@@ -25,23 +25,41 @@ class OpeningScreen(Screen):
 
 
 class HistoryScreen(Screen):
-    pass
+    made = False
+    def printing_out(self):
+        if not self.made:
+            self.made = True
+            self.items = UserData(global_username).reading()
+            for i in range(len(self.items)):
+                card = MDCard(
+                    size_hint=(None, None),
+                    size=(1000, 25),
+                    pos_hint={'center_x': 1, 'center_y': 1},
+                    elevation=10,
+                    padding=25,
+                    spacing=25,
+                    orientation='vertical'
+                )
+                label = MDLabel(text=f"{self.items[i]}")
+                card.add_widget(label)
+                self.ids['items'].add_widget(card)
+        
 
 
 class ListingsScreen(Screen):
     made = False
     dialog = None
 
-    # function is called when user logs or signs in
+    # function is called when user logs/signs in
     # sets up the listings screen and adds the buttons and games
-    def cyka(self):
+    def button_setter(self):
         if not self.made:
             self.made = True
             self.items = Mysql().get_game_list()
             for i in range(len(self.items)):
                 card = MDCard(
                     size_hint=(None, None),
-                    size=(300, 200),
+                    size=(700, 200),
                     pos_hint={'center_x': 1, 'center_y': 1},
                     elevation=10,
                     padding=25,
@@ -56,12 +74,12 @@ class ListingsScreen(Screen):
                 self.ids['items'].add_widget(card)
 
     def show_alert_dialog(self, instance):
-        name = " ".join(instance.text.split()[1::])
+        self.name = " ".join(instance.text.split()[1::])
         self.dialog = MDDialog(
-            title=f"do you want to buy {name} for {self.get_price(name)}",
+            title=f"do you want to buy {self.name} for {self.get_price(self.name)}",
             buttons=[
                 MDRoundFlatButton(
-                    text="yes", on_release=lambda instance: self.open(name, instance)
+                    text="yes", on_release=lambda instance: self.open(self.name, instance)
                 ),
                 MDRoundFlatButton(
                     text="no", on_release=self.close_dialog
@@ -75,7 +93,7 @@ class ListingsScreen(Screen):
             title=f"transaction complete!",
             buttons=[
                 MDRoundFlatButton(
-                    text="close", on_release=self.close_dialog
+                    text="close", on_release=self.close_dialog, 
                 ),
             ],
         )
@@ -88,6 +106,7 @@ class ListingsScreen(Screen):
 
     def close_dialog(self, _):
         if self.dialog is not None:
+            UserData(global_username).writing(self.name)
             self.dialog.dismiss()
 
     def open(self, name, _):

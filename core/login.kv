@@ -2,10 +2,11 @@ WindowManager:
     OpeningScreen:
     LoginScreen:
     MarketScreen:
-    BuyingScreen:
     AccountCreation:
     HistoryScreen:
     ListingsScreen:
+    BuyingScreen:
+    
 
 <OpeningScreen>:
     name: "Opening Screen"
@@ -49,22 +50,27 @@ WindowManager:
             
 <HistoryScreen>:
     name: "history screen"
-    MDBoxLayout:
-        orientation: 'vertical'
-        size: root.width, root.height
+    ScrollView:
+        MDGridLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            id: items
+            cols: 1
+            # orientation: 'vertical'
+            # size: root.width, root.height
 
-    MDCard:
-        size_hint: None, None
-        size: 600,500
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        elevation: 10
-        padding: 25
-        spacing: 25
-        orientation: 'vertical'
-        MDRoundFlatButton:
-            text: "leave"
-            on_release: app.root.transition.direction = "right"
-            on_release: app.root.current = "buying screen"
+            MDCard:
+                size_hint: None, None
+                size:300,200
+                pos_hint: {"center_x": 1, "center_y": 1}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                MDRoundFlatButton:
+                    text: "leave"
+                    on_release: app.root.transition.direction = "right"
+                    on_release: app.root.current = "buying screen"
 
 <ListingsScreen>:
     name: "listings screen"
@@ -141,7 +147,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: root.account_made_in_db()
             on_release: app.root.transition.direction = "left" 
-            on_release: app.root.get_screen('listings screen').cyka()
+            on_release: app.root.get_screen('listings screen').button_setter()
             on_release: app.root.current = "market screen" if root.auth() else "account screen"
         
         MDRoundFlatButton:
@@ -182,6 +188,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "history screen"
+            on_release: app.root.get_screen('history screen').printing_out()
 
         MDRoundFlatButton:
             text: "Market"
@@ -189,7 +196,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "listings screen"
-            on_release: app.root.get_screen('listings screen').cyka()
+            on_release: app.root.get_screen('listings screen').button_setter()
 
         MDRoundFlatButton:
             text: "Help Desk"
@@ -207,7 +214,7 @@ WindowManager:
     name: "market screen"
     MDBoxLayout:
         Image:
-            source:'pictures/mandalorian.jpg'
+            source:'pictures/mandalorian.jpeg'
             allow_stretch: True
             keep_ratio: False
 
@@ -280,7 +287,7 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: root.login_to_db()
-            on_release: app.root.get_screen('listings screen').cyka()
+            on_release: app.root.get_screen('listings screen').button_setter()
             on_release: app.root.current = "market screen" if root.auth() else "login screen"
         
         MDRoundFlatButton:
