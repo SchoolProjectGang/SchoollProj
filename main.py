@@ -32,7 +32,7 @@ class ListingsScreen(Screen):
     made = False
     dialog = None
 
-    # function is called when user logs/signs in
+    # function is called when user logs or signs in
     # sets up the listings screen and adds the buttons and games
     def cyka(self):
         if not self.made:
