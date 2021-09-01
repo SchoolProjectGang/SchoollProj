@@ -31,6 +31,8 @@ class HistoryScreen(Screen):
         if not self.made:
             self.made = True
             self.items = UserData(global_username).reading()
+            if self.items == []:
+                return
             for i in range(len(self.items)):
                 card = MDCard(
                     size_hint=(None, None),
