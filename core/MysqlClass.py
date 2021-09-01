@@ -6,8 +6,8 @@ class Mysql:
         self.m = con.connect(
             host='localhost',
             username='root',
-            password='t456tt456t',
-            database='project'
+            password='password1',
+            database='School'
         )
         self.user_id = 0
         if self.m.is_connected():
@@ -55,9 +55,12 @@ class Mysql:
         return self.cursor.fetchall()
 
     def add_game(self, name, username):
+        # list of products
         self.cursor.execute(f"select * from Products where name='{name}'")
         creds = self.cursor.fetchall()
         print(creds)
+
+        # list of users
         self.cursor.execute(f"select * from users where username='{username}'")
         info = self.cursor.fetchall()
         print(info)

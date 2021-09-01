@@ -26,6 +26,7 @@ class OpeningScreen(Screen):
 
 class HistoryScreen(Screen):
     made = False
+
     def printing_out(self):
         if not self.made:
             self.made = True
@@ -43,7 +44,6 @@ class HistoryScreen(Screen):
                 label = MDLabel(text=f"{self.items[i]}")
                 card.add_widget(label)
                 self.ids['items'].add_widget(card)
-        
 
 
 class ListingsScreen(Screen):
@@ -93,7 +93,7 @@ class ListingsScreen(Screen):
             title=f"transaction complete!",
             buttons=[
                 MDRoundFlatButton(
-                    text="close", on_release=self.close_dialog, 
+                    text="close", on_release=self.close_dialog,
                 ),
             ],
         )
@@ -131,8 +131,9 @@ class AccountCreation(Screen):
         x = Mysql()
 
         global global_username
-        if username := self.auth():
-            global_username = username
+        if self.auth():
+            global_username = self.username
+            print(global_username)
             self.ids.new_use.text = ""
             self.ids.new_password.text = ""
             x.add_userdata(self.username, self.password)
