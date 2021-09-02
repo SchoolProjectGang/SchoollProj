@@ -45,7 +45,7 @@ class HistoryScreen(Screen):
                 spacing=25,
                 orientation='vertical'
             )
-            label = MDLabel(text=f"{self.items[i]}")
+            label = MDLabel(text=f"[font=Exo-VariableFont_wght]{self.items[i]}[/font]")
             card.add_widget(label)
             self.ids['items'].add_widget(card)
 
@@ -72,7 +72,7 @@ class ListingsScreen(Screen):
                 )
                 label = MDLabel(text=f"{self.items[i][2]}")
                 button = MDFlatButton(
-                    text=f"buy {self.items[i][1]}", on_release=self.show_alert_dialog)
+                    text=f"[font=Exo-VariableFont_wght]Buy {self.items[i][1]}[/font]", on_release=self.show_alert_dialog)
                 card.add_widget(label)
                 card.add_widget(button)
                 self.ids['items'].add_widget(card)
@@ -81,10 +81,10 @@ class ListingsScreen(Screen):
         self.game_name = " ".join(instance.text.split()[1::])
 
         self.dialog = MDDialog(
-            title=f"do you want to buy {self.game_name} for {self.get_price(self.game_name)}",
+            title=f"[font=Exo-VariableFont_wght]Do you want to buy {self.game_name} for {self.get_price(self.game_name)}[/font]",
             buttons=[
                 MDFlatButton(
-                    text="yes", on_release=lambda instance: self.open(self.game_name, instance)
+                    text="[font=Exo-VariableFont_wght]Yes[/font]", on_release=lambda instance: self.open(self.game_name, instance)
                 ),
                 MDFlatButton(
                     text="no", on_release=self.close_dialog
@@ -95,10 +95,10 @@ class ListingsScreen(Screen):
 
     def show_transaction_complete_dialog(self, _):
         self.dialog = MDDialog(
-            title=f"transaction complete!",
+            title=f"[font=Exo-VariableFont_wght]transaction complete![/font]",
             buttons=[
                 MDFlatButton(
-                    text="close", on_release=self.close_dialog,
+                    text="[font=Exo-VariableFont_wght]close[/font]", on_release=self.close_dialog,
                 ),
             ],
         )
@@ -201,7 +201,7 @@ class LoginScreen(Screen):
     # show input fields
     def clearchecker(self):
         if self is not None:
-            self.ids.welcome_label.text = "WELCOME"
+            self.ids.welcome_label.text = "[font=Exo-VariableFont_wght]WELCOME[/font]"
             self.ids.user.text = ""
             self.ids.password.text = ""
 

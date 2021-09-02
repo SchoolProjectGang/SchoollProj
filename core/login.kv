@@ -68,7 +68,7 @@ WindowManager:
                 spacing: 25
                 orientation: 'vertical'
                 MDFlatButton:
-                    text: "leave"
+                    text: "[font=Exo-VariableFont_wght]leave[/font]"
                     on_release: app.root.transition.direction = "right"
                     on_release: app.root.current = "buying screen"
 
@@ -92,7 +92,7 @@ WindowManager:
                 spacing: 25
                 orientation: 'vertical'
                 MDFlatButton:
-                    text: "leave"
+                    text: "[font=Exo-VariableFont_wght]leave[/font]"
                     on_release: app.root.transition.direction = "right"
                     on_release: app.root.current = "buying screen"
 
@@ -122,7 +122,7 @@ WindowManager:
             height: self.texture_size[1]
             padding_y: 15
 
-        MDTextFieldRound:
+        MDTextField:
             id: new_use
             hint_text: "Name"
             icon_right: "account"
@@ -131,9 +131,9 @@ WindowManager:
             font_size: 18
             pos_hint: {"center_x": 0.5}
 
-        MDTextFieldRound:
+        MDTextField:
             id: new_password
-            hint_text: "password"
+            hint_text: "[font=Exo-VariableFont_wght]password[/font]"
             icon_right: "eye-off"
             size_hint_x: None
             width: 200
@@ -183,7 +183,7 @@ WindowManager:
         orientation: 'vertical'
 
         MDFlatButton:
-            text: "History"
+            text: "[font=Exo-VariableFont_wght]History[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "left"
@@ -191,7 +191,7 @@ WindowManager:
             on_release: app.root.get_screen('history screen').printing_out()
 
         MDFlatButton:
-            text: "Market"
+            text: "[font=Exo-VariableFont_wght]Market[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "left"
@@ -199,12 +199,12 @@ WindowManager:
             on_release: app.root.get_screen('listings screen').button_setter()
 
         MDFlatButton:
-            text: "Help Desk"
+            text: "[font=Exo-VariableFont_wght]Help Desk[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
         MDFlatButton:
-            text: "Leave Market"
+            text: "[font=Exo-VariableFont_wght]Leave Market[/font]"
             font_size: 12
             pos_hint: {"center_x": 0.5, "center_y": 0.5}
             on_release: app.root.transition.direction = "right"
@@ -227,12 +227,12 @@ WindowManager:
         spacing: 25
         orientation: 'vertical'
         MDFlatButton:
-            text: 'Shop'
+            text: "[font=Exo-VariableFont_wght]Shop[/font]"
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "buying screen"
             
         MDFlatButton:
-            text: 'logout'
+            text: "[font=Exo-VariableFont_wght]logout[/font]"
             on_release: app.root.transition.direction = "right"
             on_release: app.root.current = "login screen"
 
@@ -262,7 +262,7 @@ WindowManager:
             height: self.texture_size[1]
             padding_y: 10
 
-        MDTextFieldRound:
+        MDTextField:
             id: user
             hint_text: "Name"
             icon_right: "account"
@@ -271,7 +271,7 @@ WindowManager:
             font_size: 18
             pos_hint: {"center_x": 0.5}
 
-        MDTextFieldRound:
+        MDTextField:
             id: password
             hint_text: "password"
             icon_right: "eye-off"
