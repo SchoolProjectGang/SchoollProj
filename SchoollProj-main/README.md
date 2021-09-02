@@ -5,6 +5,7 @@ ALSO DONT FORGET YOU NEED PYTHON, WINDOWS 10, ARCH, UBUNTU OR ANY LINUX DISTRO
 RUN: Main.py
 
 Tested on:
+
     Windows - 
 
           pip install kivy
