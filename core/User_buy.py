@@ -12,18 +12,14 @@ class UserData:
             print("cat")
 
     def reading(self):
-        try:
-            user_data = open(
-                f"./core/critcalfiles/{self.username}_data.txt", "r")
-            k = user_data.read().splitlines()
-            for i in range(0, len(k)-1):
-                if i == 0:
-                    continue
-                if k[i] == k[i-1]:
-                    k.pop(i)
-                else:
-                    continue
-            user_data.close()
-            return k
-        except:
-            return []
+        user_data = open(
+            f"./core/critcalfiles/{self.username}_data.txt", "r")
+        k = user_data.readlines()
+        new_arr = [k[0]]
+        for i in range(1, len(k)-1):
+            if k[i] == k[i+1]:
+                pass
+            else:
+                new_arr.append(k[i])
+        user_data.close()
+        return new_arr

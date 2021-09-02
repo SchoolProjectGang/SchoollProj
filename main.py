@@ -11,6 +11,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from core.MysqlClass import Mysql
 from core.new import password_maker
 from core.User_buy import UserData
+from kivymd.uix.gridlayout import MDGridLayout
+from kivy.uix.scrollview import ScrollView
 
 # stores username of user when logged in
 global_username = ""
@@ -25,27 +27,27 @@ class OpeningScreen(Screen):
 
 
 class HistoryScreen(Screen):
-    made = False
 
     def printing_out(self):
-        if not self.made:
-            self.made = True
-            self.items = UserData(global_username).reading()
-            if self.items == []:
-                return
-            for i in range(len(self.items)):
-                card = MDCard(
-                    size_hint=(None, None),
-                    size=(1000, 25),
-                    pos_hint={'center_x': 1, 'center_y': 1},
-                    elevation=10,
-                    padding=25,
-                    spacing=25,
-                    orientation='vertical'
-                )
-                label = MDLabel(text=f"{self.items[i]}")
-                card.add_widget(label)
-                self.ids['items'].add_widget(card)
+
+        self.items = UserData(global_username).reading()
+
+        if self.items == []:
+            return
+
+        for i in range(len(self.items)):
+            card = MDCard(
+                size_hint=(None, None),
+                size=(1000, 25),
+                pos_hint={'center_x': 1, 'center_y': 1},
+                elevation=10,
+                padding=25,
+                spacing=25,
+                orientation='vertical'
+            )
+            label = MDLabel(text=f"{self.items[i]}")
+            card.add_widget(label)
+            self.ids['items'].add_widget(card)
 
 
 class ListingsScreen(Screen):
