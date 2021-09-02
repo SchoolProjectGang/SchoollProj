@@ -6,13 +6,11 @@ from kivymd.uix.card import MDCard
 # from kivy.clock import Clock
 from kivymd.uix.label import MDLabel
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDFlatButton
+from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from core.MysqlClass import Mysql
 from core.new import password_maker
 from core.User_buy import UserData
-from kivymd.uix.gridlayout import MDGridLayout
-from kivy.uix.scrollview import ScrollView
 
 # stores username of user when logged in
 global_username = ""
@@ -27,27 +25,27 @@ class OpeningScreen(Screen):
 
 
 class HistoryScreen(Screen):
+    made = False
 
     def printing_out(self):
-
-        self.items = UserData(global_username).reading()
-
-        if self.items == []:
-            return
-
-        for i in range(len(self.items)):
-            card = MDCard(
-                size_hint=(None, None),
-                size=(1000, 25),
-                pos_hint={'center_x': 1, 'center_y': 1},
-                elevation=10,
-                padding=25,
-                spacing=25,
-                orientation='vertical'
-            )
-            label = MDLabel(text=f"[font=Exo-VariableFont_wght]{self.items[i]}[/font]")
-            card.add_widget(label)
-            self.ids['items'].add_widget(card)
+        if not self.made:
+            self.made = True
+            self.items = UserData(global_username).reading()
+            if self.items == []:
+                return
+            for i in range(len(self.items)):
+                card = MDCard(
+                    size_hint=(None, None),
+                    size=(1000, 25),
+                    pos_hint={'center_x': 1, 'center_y': 1},
+                    elevation=10,
+                    padding=25,
+                    spacing=25,
+                    orientation='vertical'
+                )
+                label = MDLabel(text=f"{self.items[i]}")
+                card.add_widget(label)
+                self.ids['items'].add_widget(card)
 
 
 class ListingsScreen(Screen):
@@ -71,22 +69,22 @@ class ListingsScreen(Screen):
                     orientation='vertical'
                 )
                 label = MDLabel(text=f"{self.items[i][2]}")
-                button = MDFlatButton(
-                    text=f"[font=Exo-VariableFont_wght]Buy {self.items[i][1]}[/font]", on_release=self.show_alert_dialog)
-                card.add_widget(label)
+                button = MDRoundFlatButton(
+                    text=f"buy {self.items[i][1]}", on_release=self.show_alert_dialog)
                 card.add_widget(button)
+                card.add_widget(label)
+
                 self.ids['items'].add_widget(card)
 
     def show_alert_dialog(self, instance):
         self.game_name = " ".join(instance.text.split()[1::])
-
         self.dialog = MDDialog(
-            title=f"[font=Exo-VariableFont_wght]Do you want to buy {self.game_name} for {self.get_price(self.game_name)}[/font]",
+            title=f"do you want to buy {self.game_name} for {self.get_price(self.game_name)}",
             buttons=[
-                MDFlatButton(
-                    text="[font=Exo-VariableFont_wght]Yes[/font]", on_release=lambda instance: self.open(self.game_name, instance)
+                MDRoundFlatButton(
+                    text="yes", on_release=lambda instance: self.open(self.game_name, instance)
                 ),
-                MDFlatButton(
+                MDRoundFlatButton(
                     text="no", on_release=self.close_dialog
                 ),
             ],
@@ -95,10 +93,10 @@ class ListingsScreen(Screen):
 
     def show_transaction_complete_dialog(self, _):
         self.dialog = MDDialog(
-            title=f"[font=Exo-VariableFont_wght]transaction complete![/font]",
+            title=f"transaction complete!",
             buttons=[
-                MDFlatButton(
-                    text="[font=Exo-VariableFont_wght]close[/font]", on_release=self.close_dialog,
+                MDRoundFlatButton(
+                    text="close", on_release=self.close_dialog,
                 ),
             ],
         )
@@ -111,7 +109,7 @@ class ListingsScreen(Screen):
 
     def close_dialog(self, _):
         if self.dialog is not None:
-            UserData(global_username).writing(self.game_name)
+            UserData(global_username).writing(self.name)
             self.dialog.dismiss()
 
     def open(self, name, _):
@@ -152,7 +150,7 @@ class AccountCreation(Screen):
             self.dialog = MDDialog(
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
-                    MDFlatButton(
+                    MDRoundFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],
@@ -179,7 +177,7 @@ class AccountCreation(Screen):
                 title="[font=Exo-VariableFont_wght]Your Password is[/font]",
                 text=f"[font=Exo-VariableFont_wght]{self.password_made()}[/font]",
                 buttons=[
-                    MDFlatButton(
+                    MDRoundFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     )
                 ]
@@ -201,7 +199,7 @@ class LoginScreen(Screen):
     # show input fields
     def clearchecker(self):
         if self is not None:
-            self.ids.welcome_label.text = "[font=Exo-VariableFont_wght]WELCOME[/font]"
+            self.ids.welcome_label.text = "WELCOME"
             self.ids.user.text = ""
             self.ids.password.text = ""
 
@@ -226,7 +224,7 @@ class LoginScreen(Screen):
             self.dialog = MDDialog(
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
-                    MDFlatButton(
+                    MDRoundFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],

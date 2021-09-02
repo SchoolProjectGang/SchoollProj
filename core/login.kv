@@ -122,7 +122,7 @@ WindowManager:
             height: self.texture_size[1]
             padding_y: 15
 
-        MDTextField:
+        MDTextFieldRound:
             id: new_use
             hint_text: "Name"
             icon_right: "account"
@@ -131,7 +131,7 @@ WindowManager:
             font_size: 18
             pos_hint: {"center_x": 0.5}
 
-        MDTextField:
+        MDTextFieldRound:
             id: new_password
             hint_text: "[font=Exo-VariableFont_wght]password[/font]"
             icon_right: "eye-off"
@@ -262,7 +262,7 @@ WindowManager:
             height: self.texture_size[1]
             padding_y: 10
 
-        MDTextField:
+        MDTextFieldRound:
             id: user
             hint_text: "Name"
             icon_right: "account"
@@ -271,7 +271,7 @@ WindowManager:
             font_size: 18
             pos_hint: {"center_x": 0.5}
 
-        MDTextField:
+        MDTextFieldRound:
             id: password
             hint_text: "password"
             icon_right: "eye-off"
@@ -296,7 +296,3 @@ WindowManager:
             pos_hint: {"center_x": 0.5}
             on_release: app.root.transition.direction = "left"
             on_release: app.root.current = "account screen"
-
-        Widget:
-            size_hint_y: None
-            height: 10
