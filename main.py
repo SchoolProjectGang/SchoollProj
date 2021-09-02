@@ -6,7 +6,7 @@ from kivymd.uix.card import MDCard
 # from kivy.clock import Clock
 from kivymd.uix.label import MDLabel
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDRoundFlatButton
+from kivymd.uix.button import MDFlatButton, MDRectangleFlatButton, MDFlatButton
 from kivy.uix.screenmanager import ScreenManager, Screen
 from core.MysqlClass import Mysql
 from core.new import password_maker
@@ -71,7 +71,7 @@ class ListingsScreen(Screen):
                     orientation='vertical'
                 )
                 label = MDLabel(text=f"{self.items[i][2]}")
-                button = MDRoundFlatButton(
+                button = MDFlatButton(
                     text=f"buy {self.items[i][1]}", on_release=self.show_alert_dialog)
                 card.add_widget(label)
                 card.add_widget(button)
@@ -83,10 +83,10 @@ class ListingsScreen(Screen):
         self.dialog = MDDialog(
             title=f"do you want to buy {self.game_name} for {self.get_price(self.game_name)}",
             buttons=[
-                MDRoundFlatButton(
+                MDFlatButton(
                     text="yes", on_release=lambda instance: self.open(self.game_name, instance)
                 ),
-                MDRoundFlatButton(
+                MDFlatButton(
                     text="no", on_release=self.close_dialog
                 ),
             ],
@@ -97,7 +97,7 @@ class ListingsScreen(Screen):
         self.dialog = MDDialog(
             title=f"transaction complete!",
             buttons=[
-                MDRoundFlatButton(
+                MDFlatButton(
                     text="close", on_release=self.close_dialog,
                 ),
             ],
@@ -152,7 +152,7 @@ class AccountCreation(Screen):
             self.dialog = MDDialog(
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
-                    MDRoundFlatButton(
+                    MDFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],
@@ -179,7 +179,7 @@ class AccountCreation(Screen):
                 title="[font=Exo-VariableFont_wght]Your Password is[/font]",
                 text=f"[font=Exo-VariableFont_wght]{self.password_made()}[/font]",
                 buttons=[
-                    MDRoundFlatButton(
+                    MDFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     )
                 ]
@@ -226,7 +226,7 @@ class LoginScreen(Screen):
             self.dialog = MDDialog(
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
-                    MDRoundFlatButton(
+                    MDFlatButton(
                         text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
                     ),
                 ],
