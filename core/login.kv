@@ -4,8 +4,8 @@ WindowManager:
     MarketScreen:
     AccountCreation:
     HistoryScreen:
-    ListingsScreen:
     BuyingScreen:
+    ListingsScreen:
     
 
 <OpeningScreen>:
@@ -229,7 +229,7 @@ WindowManager:
         MDRoundFlatButton:
             text: 'Shop'
             on_release: app.root.transition.direction = "left"
-            on_release: app.root.current = "listings screen"
+            on_release: app.root.current = "buying screen"
             
         MDRoundFlatButton:
             text: 'logout'

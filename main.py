@@ -76,12 +76,13 @@ class ListingsScreen(Screen):
                 self.ids['items'].add_widget(card)
 
     def show_alert_dialog(self, instance):
-        self.name = " ".join(instance.text.split()[1::])
+        self.game_name = " ".join(instance.text.split()[1::])
+
         self.dialog = MDDialog(
-            title=f"do you want to buy {self.name} for {self.get_price(self.name)}",
+            title=f"do you want to buy {self.game_name} for {self.get_price(self.game_name)}",
             buttons=[
                 MDRoundFlatButton(
-                    text="yes", on_release=lambda instance: self.open(self.name, instance)
+                    text="yes", on_release=lambda instance: self.open(self.game_name, instance)
                 ),
                 MDRoundFlatButton(
                     text="no", on_release=self.close_dialog
@@ -108,7 +109,7 @@ class ListingsScreen(Screen):
 
     def close_dialog(self, _):
         if self.dialog is not None:
-            UserData(global_username).writing(self.name)
+            UserData(global_username).writing(self.game_name)
             self.dialog.dismiss()
 
     def open(self, name, _):
