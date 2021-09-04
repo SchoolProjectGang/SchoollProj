@@ -1,0 +1,4 @@
+*.pyc
+core/__pycache__
+screens/__pycache__
+__pycache__

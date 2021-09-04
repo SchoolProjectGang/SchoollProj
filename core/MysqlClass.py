@@ -6,8 +6,8 @@ class Mysql:
         self.m = con.connect(
             host='localhost',
             username='root',
-            password='t456tt456t',
-            database='project'
+            password='password1',
+            database='School'
         )
         self.user_id = 0
         if self.m.is_connected():
