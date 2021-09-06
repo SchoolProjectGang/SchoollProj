@@ -1,13 +1,16 @@
 import mysql.connector as con
+import json
 
 
 class Mysql:
     def __init__(self):
+        with open('./cache/creds.json', 'r') as f:
+            password = json.load(f)
         self.m = con.connect(
             host='localhost',
             username='root',
-            password='t456tt456t',
-            database='project'
+            password=password['password'],
+            database=password['database']
         )
         self.user_id = 0
         if self.m.is_connected():

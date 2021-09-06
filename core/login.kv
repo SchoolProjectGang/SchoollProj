@@ -1,5 +1,6 @@
 WindowManager:
     OpeningScreen:
+    SetupScreen:
     LoginScreen:
     AccountCreation:
     HistoryScreen:
@@ -20,7 +21,7 @@ WindowManager:
         #on_press: root.title_vap()
         #on_release: root.press_title()
         on_press: app.root.transition.direction = "left"
-        on_release: app.root.current = "login screen"
+        on_release: app.root.current = "setup screen" if root.select_next_screen() else "login screen"
         
     MDCard:
         size_hint: None,None
@@ -44,6 +45,59 @@ WindowManager:
             center_x: self.parent.center_x
             center_y: self.parent.center_y
             
+<SetupScreen>:
+    name: "setup screen"
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+
+        MDLabel:
+            id: setup_label
+            markup: True
+            text: "[font=Exo-VariableFont_wght]SETUP[/font]"
+            font_size: 30
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 10
+
+        MDTextField:
+            id: database
+            hint_text: "database"
+            font_name_hint_text: "Exo-VariableFont_wght"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            font_context: None
+            font_name: "Exo-VariableFont_wght"
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            id: password
+            hint_text: "password"
+            font_name_hint_text: "Exo-VariableFont_wght"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 200
+            font_context: None
+            font_name: "Exo-VariableFont_wght"
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+
+        MDFlatButton:
+            text: "[font=Exo-VariableFont_wght]CREATE CREDS[/font]"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.transition.direction = "left"
+            on_release: root.update_creds()
+            on_release: app.root.current = "login screen" if root.auth() else "setup screen"
 <HistoryScreen>:
     name: "history screen"
     ScrollView:
