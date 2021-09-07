@@ -1,11 +1,9 @@
-DONT FORGET TO INSTALL KIVY AND KIVYMD PACKAGES USING PIP OR ANACONDA 
-
-
-ALSO DONT FORGET YOU NEED PYTHON, WINDOWS 10, ARCH, UBUNTU OR ANY LINUX DISTRO
-
+### DONT FORGET TO INSTALL KIVY AND KIVYMD PACKAGES USING PIP OR ANACONDA 
+___
+**ALSO DONT FORGET YOU NEED [PYTHON](https://www.python.org/downloads/ "python"), [MYSQL](https://www.mysql.com/downloads/ "MYSQL") WINDOWS 10, ARCH, UBUNTU OR ANY LINUX DISTRO**
 
 RUN: Main.py
-
+___
 Tested on:
 
     Windows - 
@@ -20,3 +18,4 @@ Tested on:
           pip3 install kivy 
           
           pip3 install kivymd
+___
