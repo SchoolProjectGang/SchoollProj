@@ -2,7 +2,7 @@ from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
 from kivy.uix.screenmanager import Screen
 from core.User_buy import UserData
-import core.username
+import cache.username
 
 
 class HistoryScreen(Screen):
@@ -11,7 +11,7 @@ class HistoryScreen(Screen):
     def printing_out(self):
         if not self.made:
             self.made = True
-            self.items = UserData(core.username.global_username).reading()
+            self.items = UserData(cache.username.global_username).reading()
             if self.items == []:
                 return
             for i in range(len(self.items)):

@@ -3,7 +3,7 @@ from kivymd.uix.button import MDRoundFlatButton
 from kivy.uix.screenmanager import Screen
 from core.MysqlClass import Mysql
 from core.new import password_maker
-import core.username
+import cache.username
 
 
 class AccountCreation(Screen):
@@ -21,8 +21,8 @@ class AccountCreation(Screen):
         x = Mysql()
 
         if self.auth():
-            core.username.global_username = self.username
-            print(core.username.global_username)
+            cache.username.global_username = self.username
+            print(cache.username.global_username)
             self.ids.new_use.text = ""
             self.ids.new_password.text = ""
             x.add_userdata(self.username, self.password)

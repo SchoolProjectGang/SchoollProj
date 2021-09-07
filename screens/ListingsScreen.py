@@ -7,7 +7,7 @@ from kivymd.uix.button import MDRoundFlatButton
 from kivy.uix.screenmanager import Screen
 from core.MysqlClass import Mysql
 from core.User_buy import UserData
-import core.username
+import cache.username
 
 
 class ListingsScreen(Screen):
@@ -71,11 +71,11 @@ class ListingsScreen(Screen):
 
     def close_dialog(self, _):
         if self.dialog is not None:
-            UserData(core.username.global_username).writing(self.game_name)
+            UserData(cache.username.global_username).writing(self.game_name)
             self.dialog.dismiss()
 
     def open(self, name, _):
         x = Mysql()
-        x.add_game(name, core.username.global_username)
+        x.add_game(name, cache.username.global_username)
         self.close_dialog(_)
         self.show_transaction_complete_dialog(_)

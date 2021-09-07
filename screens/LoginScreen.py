@@ -2,7 +2,7 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRoundFlatButton
 from kivy.uix.screenmanager import Screen
 from core.MysqlClass import Mysql
-import core.username
+import cache.username
 
 
 class LoginScreen(Screen):
@@ -21,8 +21,8 @@ class LoginScreen(Screen):
             return
 
         if username := self.auth():
-            core.username.global_username = username
-            print(core.username.global_username)
+            cache.username.global_username = username
+            print(cache.username.global_username)
             self.ids.user.text = ""
             self.ids.password.text = ""
         else:

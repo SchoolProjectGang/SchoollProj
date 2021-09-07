@@ -2,7 +2,7 @@ from pip._internal import main as pip_installer
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager
-import core.username
+import cache.username
 
 # These are screen imports can be found in screens folder
 from screens.SetupScreen import SetupScreen
@@ -17,7 +17,7 @@ from screens.BuyingScreen import BuyingScreen
 pip_installer(['install', 'kivy'])
 
 # stores username of user when logged in
-core.username.global_username = ""
+cache.username.global_username = ""
 
 
 class WindowManager(ScreenManager):
