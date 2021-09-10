@@ -202,7 +202,7 @@ WindowManager:
             on_release: root.account_made_in_db()
             on_release: app.root.transition.direction = "left" 
             on_release: app.root.get_screen('listings screen').button_setter()
-            on_release: app.root.current = "market screen" if root.auth() else "account screen"
+            on_release: app.root.current = "buying screen" if root.auth() else "account screen"
         
         MDFlatButton:
             text: "[font=Exo-VariableFont_wght]EXIT[/font]"
