@@ -1,4 +1,5 @@
 from kivymd.uix.card import MDCard
+
 # from kivy.animation import Animation
 # from kivy.clock import Clock
 from kivymd.uix.label import MDLabel
@@ -24,19 +25,20 @@ class ListingsScreen(Screen):
                 card = MDCard(
                     size_hint=(None, None),
                     size=(700, 200),
-                    pos_hint={'center_x': 1, 'center_y': 1},
+                    pos_hint={"center_x": 1, "center_y": 1},
                     elevation=10,
                     padding=25,
                     spacing=25,
-                    orientation='vertical'
+                    orientation="vertical",
                 )
                 label = MDLabel(text=f"{self.items[i][2]}")
                 button = MDRoundFlatButton(
-                    text=f"Buy {self.items[i][1]}", on_release=self.show_alert_dialog)
+                    text=f"Buy {self.items[i][1]}", on_release=self.show_alert_dialog
+                )
                 card.add_widget(button)
                 card.add_widget(label)
 
-                self.ids['items'].add_widget(card)
+                self.ids["items"].add_widget(card)
 
     def show_alert_dialog(self, instance):
         self.game_name = " ".join(instance.text.split()[1::])
@@ -44,11 +46,10 @@ class ListingsScreen(Screen):
             title=f"do you want to buy {self.game_name} for {self.get_price(self.game_name)}",
             buttons=[
                 MDRoundFlatButton(
-                    text="yes", on_release=lambda instance: self.open(self.game_name, instance)
+                    text="yes",
+                    on_release=lambda instance: self.open(self.game_name, instance),
                 ),
-                MDRoundFlatButton(
-                    text="no", on_release=self.close_dialog
-                ),
+                MDRoundFlatButton(text="no", on_release=self.close_dialog),
             ],
         )
         self.dialog.open()
@@ -58,7 +59,8 @@ class ListingsScreen(Screen):
             title=f"transaction complete!",
             buttons=[
                 MDRoundFlatButton(
-                    text="close", on_release=self.close_dialog,
+                    text="close",
+                    on_release=self.close_dialog,
                 ),
             ],
         )

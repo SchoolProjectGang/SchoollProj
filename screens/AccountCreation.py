@@ -37,7 +37,8 @@ class AccountCreation(Screen):
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]",
+                        on_release=self.close_dialog,
                     ),
                 ],
             )
@@ -64,8 +65,9 @@ class AccountCreation(Screen):
                 text=f"[font=Exo-VariableFont_wght]{self.password_made()}[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]",
+                        on_release=self.close_dialog,
                     )
-                ]
+                ],
             )
         self.dialog.open()

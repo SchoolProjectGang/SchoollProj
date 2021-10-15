@@ -14,7 +14,7 @@ from screens.AccountCreation import AccountCreation
 from screens.BuyingScreen import BuyingScreen
 
 # to install all the packages
-pip_installer(['install', 'kivy'])
+pip_installer(["install", "kivy"])
 
 # stores username of user when logged in
 cache.username.global_username = ""
@@ -28,7 +28,7 @@ class MainApp(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Red"
-        return Builder.load_file('core/login.kv')
+        return Builder.load_file("core/login.kv")
 
 
 MainApp().run()

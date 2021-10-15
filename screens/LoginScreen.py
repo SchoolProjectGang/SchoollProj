@@ -36,7 +36,8 @@ class LoginScreen(Screen):
                 title="[font=Exo-VariableFont_wght]Invalid Username Or Password[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]",
+                        on_release=self.close_dialog,
                     ),
                 ],
             )

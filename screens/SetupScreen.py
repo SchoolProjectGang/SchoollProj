@@ -29,7 +29,8 @@ class SetupScreen(Screen):
                 title="[font=Exo-VariableFont_wght]Invalid Password Or Database[/font]",
                 buttons=[
                     MDRoundFlatButton(
-                        text="[font=Exo-VariableFont_wght]GO BACK[/font]", on_release=self.close_dialog
+                        text="[font=Exo-VariableFont_wght]GO BACK[/font]",
+                        on_release=self.close_dialog,
                     ),
                 ],
             )
@@ -46,4 +47,5 @@ class SetupScreen(Screen):
         return check(password, database)
 
         # modify()
+
     pass

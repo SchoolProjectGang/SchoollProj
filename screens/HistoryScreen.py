@@ -18,12 +18,12 @@ class HistoryScreen(Screen):
                 card = MDCard(
                     size_hint=(None, None),
                     size=(1000, 25),
-                    pos_hint={'center_x': 1, 'center_y': 1},
+                    pos_hint={"center_x": 1, "center_y": 1},
                     elevation=10,
                     padding=25,
                     spacing=25,
-                    orientation='vertical'
+                    orientation="vertical",
                 )
                 label = MDLabel(text=f"{self.items[i]}")
                 card.add_widget(label)
-                self.ids['items'].add_widget(card)
+                self.ids["items"].add_widget(card)
