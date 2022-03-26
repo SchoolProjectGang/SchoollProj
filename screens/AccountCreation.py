@@ -26,6 +26,8 @@ class AccountCreation(Screen):
             self.ids.new_use.text = ""
             self.ids.new_password.text = ""
             x.add_userdata(self.username, self.password)
+            with open(f"./core/critcalfiles/{self.username}_data.txt", "w"):
+                pass
         else:
             self.ids.new_use.text = ""
             self.ids.new_password.text = ""
