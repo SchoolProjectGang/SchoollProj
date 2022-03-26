@@ -10,8 +10,10 @@ WindowManager:
 <OpeningScreen>:
     name: "Opening Screen"
     MDBoxLayout:
-        Image:
+        Video:
             source:'pictures/3.gif'
+            state: 'play'
+            options: {'eos': 'loop'}
             allow_stretch: True
             keep_ratio: False
 
@@ -149,10 +151,16 @@ WindowManager:
 <AccountCreation>:
     name: "account screen"
     MDBoxLayout:
-        Image:
+        Video:
             source:'pictures/3.gif'
+            state: 'play'
+            options: {'eos': 'loop'}
             allow_stretch: True
             keep_ratio: False
+        # Image:
+        #     source:'pictures/3.gif'
+        #     allow_stretch: True
+        #     keep_ratio: False
     MDCard:
         size_hint: None, None
         size: 300, 450
@@ -222,10 +230,16 @@ WindowManager:
     MDBoxLayout:
         orientation: 'vertical'
         size: root.width, root.height
-        Image:
+        Video:
             source:'pictures/3.gif'
+            state: 'play'
+            options: {'eos': 'loop'}
             allow_stretch: True
             keep_ratio: False
+        # Image:
+        #     source:'pictures/3.gif'
+        #     allow_stretch: True
+        #     keep_ratio: False
 
     MDCard:
         size_hint: None, None
@@ -267,10 +281,16 @@ WindowManager:
 <LoginScreen>:
     name: "login screen"
     MDBoxLayout:
-        Image:
+        Video:
             source:'pictures/3.gif'
+            state: 'play'
+            options: {'eos': 'loop'}
             allow_stretch: True
             keep_ratio: False
+        # Image:
+        #     source:'pictures/3.gif'
+        #     allow_stretch: True
+        #     keep_ratio: False
     MDCard:
         size_hint: None, None
         size: 300, 400

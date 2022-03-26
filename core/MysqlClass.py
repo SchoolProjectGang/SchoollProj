@@ -8,7 +8,7 @@ class Mysql:
             password = json.load(f)
         self.m = con.connect(
             host='localhost',
-            username='root',
+            username='yash',
             password=password['password'],
             database=password['database']
         )
