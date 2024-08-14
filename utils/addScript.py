@@ -6,7 +6,7 @@ with open("./GameList.csv", newline="") as f:
     x = list(csv.reader(f))
 
 db = sql.connect(
-    host="localhost", username="yash", password="password123", database="School"
+    host="", username="", password="", database=""
 )
 cur = db.cursor()
 for i in range(len(x) - 1):
